@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panini Labs - Structuring Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Sanskrit Dawn -->
+    <!-- Application Structure Plan: A single-page, top-down narrative structure. It starts with the high-level vision (Hero), explains the core philosophy (Philosophy), demonstrates the technical advantage (Technology), shows practical applications (Focus Areas), and ends with a call to action (Contact). This linear flow is intuitive for a corporate landing page, guiding the user through the company's story. Interactions are focused on demonstrating value (e.g., the interactive chart) rather than complex navigation, making it easy to consume. -->
+    <!-- Visualization & Content Choices: 1. Hero Animation: Goal=Engage. Method=HTML Canvas animation. Interaction=None (ambient). Justification=Creates a modern, tech-focused first impression without using heavy image files. 2. Process Diagram (Philosophy): Goal=Organize/Inform. Method=Styled HTML/CSS Flexbox. Interaction=Hover highlights. Justification=Clearly explains their core process without needing complex graphics, keeping it lightweight and accessible. 3. Performance Chart (Technology): Goal=Compare. Method=Chart.js Bar Chart. Interaction=Clickable buttons to filter data by domain. Justification=Provides dynamic, data-driven proof of their value proposition, allowing users to see the impact of fine-tuning in a tangible way. All other content is presented in clear, readable text blocks and cards. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #38332E;
+        }
+        .sanskrit-dawn-bg { background-color: #FDFBF8; }
+        .sanskrit-dawn-text { color: #38332E; }
+        .sanskrit-dawn-primary { color: #D97706; } /* Saffron/Amber */
+        .sanskrit-dawn-primary-bg { background-color: #D97706; }
+        .sanskrit-dawn-secondary { color: #3A506B; } /* Deep Indigo/Blue */
+        .sanskrit-dawn-secondary-bg { background-color: #3A506B; }
+        .sanskrit-dawn-card-bg { background-color: #FFFFFF; }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #D97706;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="sanskrit-dawn-bg sanskrit-dawn-text">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 transition-all duration-300 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold sanskrit-dawn-secondary">
+                <span class="sanskrit-dawn-primary">Pāṇini</span> Labs
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#philosophy" class="nav-link font-medium">Philosophy</a>
+                <a href="#technology" class="nav-link font-medium">Technology</a>
+                <a href="#focus" class="nav-link font-medium">Focus Areas</a>
+                <a href="#contact" class="nav-link font-medium">Contact</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#philosophy" class="block py-2 nav-link">Philosophy</a>
+            <a href="#technology" class="block py-2 nav-link">Technology</a>
+            <a href="#focus" class="block py-2 nav-link">Focus Areas</a>
+            <a href="#contact" class="block py-2 nav-link">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+            <canvas id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
+            <div class="text-center z-10 px-4">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                    Structuring Intelligence. <span class="sanskrit-dawn-primary">Defining Meaning.</span>
+                </h1>
+                <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+                    Inspired by the great grammarian Pāṇini, we craft fine-tuned language models and intelligent agents to bring clarity and reliability to human-AI interaction.
+                </p>
+                <a href="#philosophy" class="sanskrit-dawn-primary-bg text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-amber-700 transition duration-300">
+                    Explore Our Vision
+                </a>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">The Pāṇini Principle</h2>
+                    <p class="text-lg max-w-3xl mx-auto">From Ancient Grammar to Modern AI, our philosophy is rooted in the power of structure to create precise and reliable meaning. We apply this timeless principle to build language models you can trust.</p>
+                </div>
+
+                <!-- BHARTRIHARI QUOTE INTEGRATION -->
+                <div class="max-w-4xl mx-auto mb-16 p-8 border-l-4 border-amber-500 bg-amber-50 rounded-lg shadow-inner fade-in">
+                    <p class="text-center italic text-xl md:text-2xl sanskrit-dawn-secondary mb-4">
+                        वाण्येका समलङ्करोति पुरुषं या संस्कृता धार्यते ।
+                    </p>
+                    <p class="text-center text-lg sanskrit-dawn-primary font-medium">
+                        "Only speech (language), well-refined and held, truly adorns a man."
+                    </p>
+                    <p class="text-center text-sm mt-2 text-gray-500">— Bhartṛhari, Nīti Śataka (Adapted)</p>
+                    <p class="mt-4 text-center text-sm">
+                        Like the Sanskrit rule-set that provided unambiguous interpretation, we believe the structure and **refinement of language (Vāṇī)** is the **eternal ornament** of an AI agent, ensuring clarity over all fleeting, generic outputs.
+                    </p>
+                </div>
+                <!-- END QUOTE -->
+
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-semibold mb-4 sanskrit-dawn-secondary">The Ancient Blueprint: Pāṇini's Grammar</h3>
+                        <p>The ancient Sanskrit scholar Pāṇini created the Aṣṭādhyāyī, a set of ~4,000 rules that formed a complete, generative grammar for the Sanskrit language. This system was so precise it allowed for the unambiguous interpretation of complex expressions, laying a foundation for linguistic structure that has inspired scholars for millennia.</p>
+                    </div>
+                    <div class="fade-in">
+                        <h3 class="text-2xl font-semibold mb-4 sanskrit-dawn-primary">The Modern Application: Our AI</h3>
+                        <p>We see AI hallucinations as a problem of unstructured language. By fine-tuning open-source models with specific rules, domain knowledge, and ethical constraints—our "Pāṇini Method"—we drastically reduce ambiguity and build AI agents that provide reliable, context-aware, and purposeful assistance.</p>
+                    </div>
+                </div>
+                <div class="fade-in">
+                    <h3 class="text-center text-2xl font-semibold mb-8 sanskrit-dawn-secondary">Our Refinement Process</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                        <div class="p-6 rounded-lg w-full md:w-1/4 transition-transform hover:scale-105">
+                            <div class="text-3xl mb-2">①</div>
+                            <h4 class="font-bold">Open-Source Foundation</h4>
+                            <p class="text-sm">We start with powerful, open-weight models.</p>
+                        </div>
+                        <div class="text-2xl sanskrit-dawn-primary font-light transform md:rotate-0 rotate-90">→</div>
+                        <div class="p-6 rounded-lg w-full md:w-1/4 bg-amber-50 transition-transform hover:scale-105">
+                            <div class="text-3xl mb-2">②</div>
+                            <h4 class="font-bold">The Pāṇini Method</h4>
+                            <p class="text-sm">Fine-tuning with specific rules & domain data.</p>
+                        </div>
+                        <div class="text-2xl sanskrit-dawn-primary font-light transform md:rotate-0 rotate-90">→</div>
+                        <div class="p-6 rounded-lg w-full md:w-1/4 transition-transform hover:scale-105">
+                            <div class="text-3xl mb-2">③</div>
+                            <h4 class="font-bold">Specialized Agent</h4>
+                            <p class="text-sm">Building purpose-driven AI for specific tasks.</p>
+                        </div>
+                        <div class="text-2xl sanskrit-dawn-primary font-light transform md:rotate-0 rotate-90">→</div>
+                         <div class="p-6 rounded-lg w-full md:w-1/4 bg-green-50 transition-transform hover:scale-105">
+                            <div class="text-3xl mb-2">④</div>
+                            <h4 class="font-bold">Reliable Output</h4>
+                            <p class="text-sm">Delivering accurate and context-aware results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="technology" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Engineering Clarity</h2>
+                    <p class="text-lg max-w-3xl mx-auto">Our fine-tuning process yields quantifiable improvements in performance and reliability. Select a domain below to see how our models compare against generic, out-of-the-box solutions.</p>
+                </div>
+
+                <div class="fade-in">
+                    <div class="flex justify-center flex-wrap gap-4 mb-8">
+                        <button class="domain-btn active-btn bg-amber-500 text-white py-2 px-5 rounded-full font-medium" data-domain="healthcare">Healthcare</button>
+                        <button class="domain-btn bg-white py-2 px-5 rounded-full font-medium border border-gray-200" data-domain="finance">Finance</button>
+                        <button class="domain-btn bg-white py-2 px-5 rounded-full font-medium border border-gray-200" data-domain="legal">Legal</button>
+                    </div>
+
+                    <div class="grid lg:grid-cols-5 gap-8 items-center">
+                        <div class="lg:col-span-3">
+                            <div class="chart-container sanskrit-dawn-card-bg p-4 rounded-lg shadow-md">
+                                <canvas id="performanceChart"></canvas>
+                            </div>
+                        </div>
+                        <div id="tech-explanation" class="lg:col-span-2">
+                            <h3 class="text-2xl font-semibold mb-3 sanskrit-dawn-secondary">Focus on Healthcare</h3>
+                            <p>In healthcare, precision is paramount. Our multimodal models, fine-tuned on anonymized medical data and clinical guidelines, can assist in analyzing diagnostic imagery, summarizing patient records, and identifying potential drug interactions with significantly higher accuracy and lower risk of error than generic models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="focus" class="py-20 md:py-32 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Applying Structure to Key Sectors</h2>
+                    <p class="text-lg max-w-3xl mx-auto">We are building specialized AI solutions to tackle the unique challenges of various industries, with a primary focus on improving outcomes in healthcare.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2 border-t-4 border-amber-500">
+                        <div class="text-4xl mb-4 sanskrit-dawn-primary">🩺</div>
+                        <h3 class="text-xl font-bold mb-2">Healthcare</h3>
+                        <p>Enhancing diagnostics, personalizing patient care, and streamlining medical research with multimodal AI that understands text, images, and data.</p>
+                    </div>
+                    <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4 sanskrit-dawn-secondary">💰</div>
+                        <h3 class="text-xl font-bold mb-2">Finance</h3>
+                        <p>Developing secure agents for market analysis, fraud detection, and regulatory compliance, ensuring accuracy and data privacy.</p>
+                    </div>
+                    <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2">
+                        <div class="text-4xl mb-4 sanskrit-dawn-secondary">🎓</div>
+                        <h3 class="text-xl font-bold mb-2">Education</h3>
+                        <p>Creating personalized learning assistants and advanced research tools to make education more accessible and effective for everyone.</p>
+                    </div>
+                    <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2">
+                         <div class="text-4xl mb-4 sanskrit-dawn-secondary">⚙️</div>
+                        <h3 class="text-xl font-bold mb-2">Custom Solutions</h3>
+                        <p>Partnering with enterprises to build bespoke AI agents tailored to their unique workflows and data ecosystems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 text-center">
+                <div class="max-w-2xl mx-auto fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Let's Build the Future of Language, Together.</h2>
+                    <p class="text-lg mb-8">Have a specific challenge in mind or interested in learning more about our approach? We'd love to connect.</p>
+                    <a href="mailto:contact@panini-labs.in" class="inline-block sanskrit-dawn-secondary-bg text-white font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-800 transition duration-300">
+                        contact@panini-labs.in
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200">
+        <div class="container mx-auto px-6 py-6 text-center text-gray-500">
+            <p>&copy; 2025 Panini Labs. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                } else {
+                    header.classList.remove('shadow-lg');
+                }
+            });
+
+            
+            const canvas = document.getElementById('hero-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 1 - 0.5;
+                    this.speedY = Math.random() * 1 - 0.5;
+                    this.color = 'rgba(58, 80, 107, 0.5)';
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.size > 0.2) this.size -= 0.01;
+                    if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                let numberOfParticles = (canvas.width * canvas.height) / 9000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+            initParticles();
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+                connect();
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            function connect() {
+                let opacityValue = 1;
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a; b < particles.length; b++) {
+                        let distance = Math.sqrt(
+                            (particles[a].x - particles[b].x) * (particles[a].x - particles[b].x) +
+                            (particles[a].y - particles[b].y) * (particles[a].y - particles[b].y)
+                        );
+                        if (distance < 100) {
+                            opacityValue = 1 - (distance / 100);
+                            ctx.strokeStyle = `rgba(217, 119, 6, ${opacityValue * 0.5})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                initParticles();
+            });
+
+            
+            const chartData = {
+                healthcare: {
+                    labels: ['Task-Specific Accuracy', 'Reduced Hallucinations'],
+                    datasets: [
+                        {
+                            label: 'Generic LLM',
+                            data: [65, 30],
+                            backgroundColor: 'rgba(58, 80, 107, 0.6)',
+                            borderColor: 'rgba(58, 80, 107, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Panini Labs Fine-Tuned LLM',
+                            data: [92, 88],
+                            backgroundColor: 'rgba(217, 119, 6, 0.6)',
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                finance: {
+                    labels: ['Task-Specific Accuracy', 'Reduced Hallucinations'],
+                    datasets: [
+                        {
+                            label: 'Generic LLM',
+                            data: [70, 45],
+                             backgroundColor: 'rgba(58, 80, 107, 0.6)',
+                            borderColor: 'rgba(58, 80, 107, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Panini Labs Fine-Tuned LLM',
+                            data: [94, 91],
+                            backgroundColor: 'rgba(217, 119, 6, 0.6)',
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                legal: {
+                    labels: ['Task-Specific Accuracy', 'Reduced Hallucinations'],
+                    datasets: [
+                        {
+                            label: 'Generic LLM',
+                            data: [62, 35],
+                             backgroundColor: 'rgba(58, 80, 107, 0.6)',
+                            borderColor: 'rgba(58, 80, 107, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Panini Labs Fine-Tuned LLM',
+                            data: [89, 85],
+                            backgroundColor: 'rgba(217, 119, 6, 0.6)',
+                            borderColor: 'rgba(217, 119, 6, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                }
+            };
+
+            const techExplanations = {
+                healthcare: {
+                    title: "Focus on Healthcare",
+                    text: "In healthcare, precision is paramount. Our multimodal models, fine-tuned on anonymized medical data and clinical guidelines, can assist in analyzing diagnostic imagery, summarizing patient records, and identifying potential drug interactions with significantly higher accuracy and lower risk of error than generic models."
+                },
+                finance: {
+                    title: "Precision in Finance",
+                    text: "Financial applications demand high-stakes accuracy. Our models are trained on market data and regulatory frameworks to provide reliable analysis, detect fraudulent patterns, and ensure compliance, minimizing costly errors associated with generic AI."
+                },
+                legal: {
+                    title: "Clarity in Legal Tech",
+                    text: "The legal field requires nuanced understanding of complex documents. By fine-tuning with case law and legal precedents, our agents can perform document review, contract analysis, and legal research with a degree of reliability that untuned models cannot match."
+                }
+            };
+
+            const ctxChart = document.getElementById('performanceChart').getContext('2d');
+            const performanceChart = new Chart(ctxChart, {
+                type: 'bar',
+                data: chartData.healthcare,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%'
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Performance Comparison: Healthcare Domain'
+                        }
+                    }
+                }
+            });
+
+            const domainButtons = document.querySelectorAll('.domain-btn');
+            const explanationDiv = document.getElementById('tech-explanation');
+            domainButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const domain = button.dataset.domain;
+                    
+                    domainButtons.forEach(btn => {
+                        btn.classList.remove('active-btn', 'bg-amber-500', 'text-white');
+                        btn.classList.add('bg-white');
+                    });
+                    
+                    button.classList.add('active-btn', 'bg-amber-500', 'text-white');
+                    button.classList.remove('bg-white');
+
+                    performanceChart.data = chartData[domain];
+                    performanceChart.options.plugins.title.text = `Performance Comparison: ${domain.charAt(0).toUpperCase() + domain.slice(1)} Domain`;
+                    performanceChart.update();
+                    
+                    explanationDiv.innerHTML = `
+                        <h3 class="text-2xl font-semibold mb-3 sanskrit-dawn-secondary">${techExplanations[domain].title}</h3>
+                        <p>${techExplanations[domain].text}</p>
+                    `;
+                });
+            });
+
+            
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
