@@ -207,24 +207,32 @@
                                 </div>
                             </div>
                             <div id="tech-explanation" class="lg:col-span-2 p-6 rounded-lg bg-white shadow-lg">
-                                <h3 class="text-2xl font-semibold mb-3 sanskrit-dawn-secondary">Focus on Healthcare</h3>
-                                <p>In healthcare, precision is paramount. Our multimodal models, fine-tuned on anonymized medical data and clinical guidelines, can assist in analyzing diagnostic imagery, summarizing patient records, and identifying potential drug interactions with significantly higher accuracy and lower risk of error than generic models.</p>
+                                <!-- Content dynamically updated by JS, but initialized below -->
                             </div>
+                        </div>
+                        <div class="max-w-4xl mx-auto mt-12 p-6 rounded-xl bg-amber-50 shadow-inner">
+                            <p class="text-lg font-semibold text-gray-800">
+                                🔒 <strong>Core Technical Advantage: Privacy & Independence</strong>
+                            </p>
+                            <p class="text-md mt-2 text-gray-700">
+                                Our fine-tuned open-weight models are engineered for <strong>on-premise deployment</strong>. This approach ensures <strong>privacy-preserving</strong> computation and complete <strong>operational independence</strong> from public internet reliance, making them ideal for all applications involving sensitive enterprise, customer, or transactional data.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- FOCUS AREAS SECTION (Updated with Āryabhaṭa Vibhāga) -->
+            <!-- FOCUS AREAS SECTION (Updated with Āryabhaṭa Vibhāga and Personal Assistants) -->
             <section id="focus" class="py-20 md:py-32 bg-white">
                 <div class="container mx-auto px-6">
                     <div class="text-center mb-16 fade-in">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Specialized Agents for Key Sectors</h2>
-                        <p class="text-lg max-w-3xl mx-auto">Our primary expertise lies in creating multimodal and single-mode language models for the <strong>healthcare</strong> industry, but our Pāṇini Method is applicable to any domain demanding high reliability and structured output.</p>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">Specialized Agents for Key Sectors & Individuals</h2>
+                        <p class="text-lg max-w-3xl mx-auto">Leveraging the Pāṇini Method, we develop robust AI solutions for high-stakes enterprise sectors and deliver reliable, expert assistance directly to individuals.</p>
                     </div>
                     
-                    <!-- Updated Grid for Four Vibhāgas -->
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Vibhāga Grid -->
+                    <h3 class="text-2xl font-bold mb-6 sanskrit-dawn-secondary text-center">Enterprise Vibhāgas (Structured Expertise)</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
                         
                         <!-- Suśrutha Vibhāga (Healthcare) -->
                         <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2 border-t-4 border-amber-500">
@@ -247,20 +255,28 @@
                             <p class="text-sm">Focuses on building AI that promotes <strong>systematic inquiry and logical precision</strong>. Agents include structured tutoring systems and advanced research assistants for complex academic fields.</p>
                         </div>
                         
-                        <!-- Āryabhaṭa Vibhāga (Science) - NEW -->
+                        <!-- Āryabhaṭa Vibhāga (Science) -->
                         <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg fade-in transition-transform hover:-translate-y-2">
                             <div class="text-4xl mb-4 sanskrit-dawn-secondary">⚛️</div>
                             <h3 class="text-xl font-bold mb-2">Āryabhaṭa Vibhāga (Scientific Modeling)</h3>
-                            <p class="text-sm">Dedicated to complex analytical reasoning and modeling for hard sciences (Physics, Chemistry, Materials). We build agents for **experimental design, data analysis, and predictive simulation**.</p>
+                            <p class="text-sm">Dedicated to complex analytical reasoning and modeling for hard sciences (Physics, Chemistry, Materials). We build agents for <strong>experimental design, data analysis, and predictive simulation</strong>.</p>
                         </div>
                     </div>
                     
-                    <!-- Custom Solutions Card moved out to make space for the 4th Vibhāga -->
-                    <div class="mt-12 text-center fade-in">
-                        <div class="sanskrit-dawn-card-bg p-8 rounded-xl shadow-lg inline-block max-w-lg">
-                            <div class="text-4xl mb-4 sanskrit-dawn-primary">⚙️</div>
-                            <h3 class="text-xl font-bold mb-2">Custom Solutions: Enterprise Agents</h3>
-                            <p class="text-sm">Bespoke fine-tuning and agent construction for enterprises needing highly specialized, in-house LLM capabilities for unique workflows beyond our core sectors.</p>
+                    <!-- Individual Solutions Block -->
+                    <h3 class="text-2xl font-bold mb-6 sanskrit-dawn-primary text-center">Reliable AI for Individuals</h3>
+                    <div class="max-w-4xl mx-auto p-8 rounded-xl shadow-2xl bg-amber-50 border-t-4 border-amber-600 fade-in">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <div class="text-center md:text-left">
+                                <div class="text-5xl mb-3">🧑‍🔬</div>
+                                <h4 class="text-xl font-bold mb-2">Personal Expert Assistant</h4>
+                                <p class="text-sm text-gray-700">Highly fine-tuned models tailored to function as your reliable <strong>expert assistant</strong> in fields like law, advanced programming, or specialized research, providing precise, knowledge-based answers.</p>
+                            </div>
+                            <div class="text-center md:text-left">
+                                <div class="text-5xl mb-3">💬</div>
+                                <h4 class="text-xl font-bold mb-2">Personal General Assistant</h4>
+                                <p class="text-sm text-gray-700">Building general-purpose AI companions for everyday tasks—scheduling, drafting, and information retrieval—but with <strong>Pāṇini reliability</strong> to eliminate misinformation and minimize frustrating context errors.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -704,6 +720,13 @@
 
             const domainButtons = document.querySelectorAll('.domain-btn');
             const explanationDiv = document.getElementById('tech-explanation');
+            
+            // Set initial explanation
+            explanationDiv.innerHTML = `
+                <h3 class="text-2xl font-semibold mb-3 sanskrit-dawn-secondary">${techExplanations.healthcare.title}</h3>
+                <p>${techExplanations.healthcare.text}</p>
+            `;
+
             domainButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const domain = button.dataset.domain;
